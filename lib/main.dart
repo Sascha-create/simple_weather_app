@@ -1,25 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:simple_weather_app/weather_data.dart';
 
 void main() {
   runApp(const MainApp());
+// WeatherData actualWeather = WeatherData(
+//       city: "Karlsruhe", temperature: 22, weatherCondition: "sonnig");
+
+  
 }
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
+  
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: WeatherApp(),
+    
+
+    return MaterialApp(
+      home: WeatherApp(actualWeather: WeatherData(city: "Karlsruhe", 
+      temperature: 22, weatherCondition: "sonnig"))
     );
   }
 }
 
 class WeatherApp extends StatelessWidget {
-  const WeatherApp({super.key});
+  const WeatherApp({super.key, required this.actualWeather});
+  final WeatherData actualWeather;
 
+  
   @override
   Widget build(BuildContext context) {
+    final String city = actualWeather.city;
+    final double temperature = actualWeather.temperature;
+    final String weatherCondition = actualWeather.weatherCondition;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 92, 199, 248),
@@ -32,12 +47,12 @@ class WeatherApp extends StatelessWidget {
               fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
         ),
       ),
-      body: const SafeArea(
+      body:  SafeArea(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(bottom: 24.0),
                 child: Text(
                   "Willkommen zur Wetter-App!",
@@ -48,11 +63,11 @@ class WeatherApp extends StatelessWidget {
                 ),
               ),
               Text(
-                "Karlsruhe",
+                city,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
               ),
-              Text("22º", style: TextStyle(fontSize: 24)),
-              Text("sonnig", style: TextStyle(fontSize: 16)),
+              Text("$temperatureº", style: TextStyle(fontSize: 24)),
+              Text(weatherCondition, style: TextStyle(fontSize: 16)),
             ],
           ),
         ),
