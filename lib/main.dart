@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:simple_weather_app/header.dart';
 import 'package:simple_weather_app/weather_data.dart';
+import 'package:simple_weather_app/weather_display.dart';
 import 'package:simple_weather_app/weather_repository.dart';
 
 void main() {
@@ -44,22 +46,15 @@ class WeatherApp extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const Header(),
               const Padding(
-                padding: EdgeInsets.only(bottom: 24.0),
-                child: Text(
-                  "Willkommen zur Wetter-App!",
-                  style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w800,
-                      color: Colors.blue),
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 24.0),
+                child: Divider(),
               ),
-              Text(
-                city,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-              ),
-              Text("$temperatureº", style: TextStyle(fontSize: 24)),
-              Text(weatherCondition, style: TextStyle(fontSize: 16)),
+              WeatherDisplay(
+                  city: city,
+                  temperature: temperature,
+                  weatherCondition: weatherCondition),
             ],
           ),
         ),
