@@ -30,11 +30,15 @@ class WeatherApp extends StatelessWidget {
       body: const SafeArea(
         child: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 "Willkommen zur Wetter-App!",
                 style: TextStyle(fontSize: 24, color: Colors.blue),
-              )
+              ),
+              Text("Karlsruhe"),
+              Text("22º"),
+              Text("sonnig"),
             ],
           ),
         ),
