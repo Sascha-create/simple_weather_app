@@ -22,10 +22,15 @@ class WeatherApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 92, 199, 248),
         elevation: 2,
         shadowColor: Colors.grey,
         centerTitle: true,
-        title: const Text("Wetter App"),
+        title: const Text(
+          "Wetter App 3000",
+          style: TextStyle(
+              fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
+        ),
       ),
       body: const SafeArea(
         child: Center(
