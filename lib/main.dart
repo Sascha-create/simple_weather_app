@@ -37,13 +37,22 @@ class WeatherApp extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                "Willkommen zur Wetter-App!",
-                style: TextStyle(fontSize: 24, color: Colors.blue),
+              Padding(
+                padding: EdgeInsets.only(bottom: 24.0),
+                child: Text(
+                  "Willkommen zur Wetter-App!",
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w800,
+                      color: Colors.blue),
+                ),
               ),
-              Text("Karlsruhe"),
-              Text("22º"),
-              Text("sonnig"),
+              Text(
+                "Karlsruhe",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+              ),
+              Text("22º", style: TextStyle(fontSize: 24)),
+              Text("sonnig", style: TextStyle(fontSize: 16)),
             ],
           ),
         ),
