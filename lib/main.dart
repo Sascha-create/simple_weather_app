@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:simple_weather_app/header.dart';
 import 'package:simple_weather_app/weather_data.dart';
@@ -12,22 +14,44 @@ void main() {
 class MainApp extends StatelessWidget {
   const MainApp({super.key, required this.repository});
   final WeatherRepository repository;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: WeatherApp(actualWeather: repository.getRandomWeather()));
+        home: WeatherApp(actualWeatherData: repository.getRandomWeather()));
   }
 }
 
-class WeatherApp extends StatelessWidget {
-  const WeatherApp({super.key, required this.actualWeather});
-  final WeatherData actualWeather;
+class WeatherApp extends StatefulWidget {
+  const WeatherApp({super.key, required this.actualWeatherData});
+  final WeatherData actualWeatherData;
+
+  @override
+  State<WeatherApp> createState() => _WeatherDataState();
+}
+
+class _WeatherDataState extends State<WeatherApp> {
+  late WeatherData actualWeatherD = WeatherData(
+      city: "city", temperature: 666, weatherCondition: "weatherCondition");
+  final WeatherRepository weatherRepository = WeatherRepository();
+
+  String get city => actualWeatherD.city;
+
+  double get temperature => actualWeatherD.temperature;
+
+  String get weatherCondition => actualWeatherD.weatherCondition;
+
+  void getRandomWeatherData() {
+    setState(() {
+      actualWeatherD = weatherDatas[Random().nextInt(weatherDatas.length)];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final String city = actualWeather.city;
-    final double temperature = actualWeather.temperature;
-    final String weatherCondition = actualWeather.weatherCondition;
+    final String city = actualWeatherD.city;
+    final double temperature = actualWeatherD.temperature;
+    final String weatherCondition = actualWeatherD.weatherCondition;
 
     return Scaffold(
       appBar: AppBar(
@@ -55,10 +79,16 @@ class WeatherApp extends StatelessWidget {
                   city: city,
                   temperature: temperature,
                   weatherCondition: weatherCondition),
+              FloatingActionButton(onPressed: getRandomWeatherData)
             ],
           ),
         ),
       ),
     );
   }
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   return WeatherData(city: actualCity.city, temperature: actualCity.temperature, weatherCondition: actualCity.weatherCondition);
+  // }
 }
