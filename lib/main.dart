@@ -79,16 +79,14 @@ class _WeatherDataState extends State<WeatherApp> {
                   city: city,
                   temperature: temperature,
                   weatherCondition: weatherCondition),
-              FloatingActionButton(onPressed: getRandomWeatherData)
+              FloatingActionButton(
+                onPressed: getRandomWeatherData,
+                backgroundColor: Colors.blue[200],
+              )
             ],
           ),
         ),
       ),
     );
   }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   return WeatherData(city: actualCity.city, temperature: actualCity.temperature, weatherCondition: actualCity.weatherCondition);
-  // }
 }
