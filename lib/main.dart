@@ -82,6 +82,11 @@ class _WeatherDataState extends State<WeatherApp> {
               FloatingActionButton(
                 onPressed: getRandomWeatherData,
                 backgroundColor: Colors.blue[200],
+                child: const Icon(
+                  Icons.cloud_outlined,
+                  color: Colors.white,
+                  size: 36,
+                ),
               )
             ],
           ),
