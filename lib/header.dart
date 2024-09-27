@@ -11,8 +11,9 @@ class Header extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 8.0),
       child: Text(
         "Willkommen zur Wetter-App!",
-        style: TextStyle(
-            fontSize: 24, fontWeight: FontWeight.w800, color: Colors.blue),
+        style: TextStyle(shadows: <Shadow>[
+          Shadow(offset: Offset(0, 1), blurRadius: 2, color: Colors.black38)
+        ], fontSize: 26, fontWeight: FontWeight.w800, color: Colors.blue),
       ),
     );
   }

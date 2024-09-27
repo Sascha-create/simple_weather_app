@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:simple_weather_app/header.dart';
 import 'package:simple_weather_app/weather_data.dart';
@@ -18,37 +16,23 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: WeatherApp(actualWeatherData: repository.getRandomWeather()));
+      home: WeatherApp(repository: repository),
+    );
   }
 }
 
 class WeatherApp extends StatefulWidget {
-  const WeatherApp({super.key, required this.actualWeatherData});
-  final WeatherData actualWeatherData;
+  const WeatherApp({super.key, required this.repository});
+  final WeatherRepository repository;
 
   @override
   State<WeatherApp> createState() => _WeatherDataState();
 }
 
 class _WeatherDataState extends State<WeatherApp> {
-  late WeatherData actualWeatherD = WeatherData(
-      city: "city", temperature: 666, weatherCondition: "weatherCondition");
-  final WeatherRepository weatherRepository = WeatherRepository();
-
-  String get city => actualWeatherD.city;
-
-  double get temperature => actualWeatherD.temperature;
-
-  String get weatherCondition => actualWeatherD.weatherCondition;
-
-  void getRandomWeatherData() {
-    setState(() {
-      actualWeatherD = weatherDatas[Random().nextInt(weatherDatas.length)];
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    WeatherData actualWeatherD = widget.repository.getRandomWeather();
     final String city = actualWeatherD.city;
     final double temperature = actualWeatherD.temperature;
     final String weatherCondition = actualWeatherD.weatherCondition;
@@ -72,7 +56,7 @@ class _WeatherDataState extends State<WeatherApp> {
             children: [
               const Header(),
               const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24.0),
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
                 child: Divider(),
               ),
               WeatherDisplay(
@@ -80,7 +64,9 @@ class _WeatherDataState extends State<WeatherApp> {
                   temperature: temperature,
                   weatherCondition: weatherCondition),
               FloatingActionButton(
-                onPressed: getRandomWeatherData,
+                onPressed: () {
+                  setState(() {});
+                },
                 backgroundColor: Colors.blue[200],
                 child: const Icon(
                   Icons.cloud_outlined,
